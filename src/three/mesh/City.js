@@ -22,6 +22,7 @@ export default class City {
     this.transTape;
     this.turnTransTape;
     this.box;
+    this.animation;
 
 
     gltfLoader.load("./model/transTape.glb", (gltf) => {
@@ -43,6 +44,7 @@ export default class City {
       console.log('box',gltf);
       this.box = gltf.scene;
       gltf.scene.scale.set(0.5, 0.5, 0.5);
+      gltf.scene.position.set(0, 0.5, -2);
       this.box.visible = false;
       scene.add(gltf.scene);
     });
@@ -84,16 +86,40 @@ export default class City {
       this.showTransTape();
       this.hideTurnTransTape();
       this.hideBox();
+      this.animation.kill();
     });
     eventHub.on("showTurnTransTape", () => {
       this.showTurnTransTape();
       this.hideTransTape();
       this.hideBox();
+      this.animation.kill();
     });
     eventHub.on("showBox", () => {
       this.showBox();
-      this.hideTransTape();
+      this.showTransTape();
       this.hideTurnTransTape();
+      this.animation= gsap.to(this.box.position, {
+        z: 1.5,
+        duration: 5,
+        repeat:-1
+      });
+      this.animation.play();
+      // gsap.from(this.box.position, {
+      //   z: -5,
+      //   duration: 5,
+      //   repeat:-1
+      // });
+
+    });
+    eventHub.on("showTurn", () => {
+      this.showBox();
+      this.showTransTape();
+      this.hideTurnTransTape();
+      this.animation = gsap.to(this.box.position, {
+        z: 5,
+        duration: 5,
+        repeat:-1
+      });
     });
 
   }

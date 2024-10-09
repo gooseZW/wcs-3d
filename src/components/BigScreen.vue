@@ -23,11 +23,12 @@
         <div class="cityEvent" @click="showBox">
           <h3>
             <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 展示纸箱 </span>
+            <span> 展示纸箱运输 </span>
           </h3>
 
           <div class="footerBorder"></div>
         </div>
+
 
       </div>
 
@@ -58,6 +59,9 @@ const showTurnTransTape = () => {
 };
 const showBox = () => {
   eventHub.emit("showBox");
+};
+const showTurn = () => {
+  eventHub.emit("showTurn");
 };
 let open = false;
 const showAll = () => {
