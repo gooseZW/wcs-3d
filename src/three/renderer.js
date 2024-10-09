@@ -15,7 +15,7 @@ renderer.shadowMap.enabled = true;
 // 调节色调映射
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 // 调节曝光
-renderer.toneMappingExposure = 0.8;
+renderer.toneMappingExposure = 1;
 
 // 创建css3drender
 const css3drender = new CSS3DRenderer();

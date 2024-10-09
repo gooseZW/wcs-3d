@@ -14,7 +14,7 @@ const controls = new OrbitControls(
 // 设置控制器阻尼
 controls.enableDamping = true;
 // 设置自动旋转;
-// controls.autoRotate = true;
+controls.autoRotate = true;
 
 class ControlModule {
   constructor() {

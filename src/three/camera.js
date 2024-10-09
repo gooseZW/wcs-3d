@@ -9,7 +9,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 // 设置相机位置
 // object3d具有position，属性是1个3维的向量
-camera.position.set(100, 100, 300);
+camera.position.set(3, 3, 3);
 
 class CameraModule {
   constructor() {

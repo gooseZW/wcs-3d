@@ -9,7 +9,7 @@ import { ShaderMaterial } from "three";
 import fragmentShader from "@/shader/fighter/fragmentShader.glsl";
 import vertexShader from "@/shader/fighter/vertexShader.glsl";
 
-export default class City {
+export default class Factory {
   constructor(scene) {
     const gltfLoader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
@@ -19,34 +19,26 @@ export default class City {
     gltfLoader.setDRACOLoader(dracoLoader);
 
     this.scene = scene;
-    this.transTape;
-    this.turnTransTape;
-    this.box;
+    this.floor1Group;
+    this.floor2Tags = [];
 
 
     gltfLoader.load("./model/transTape.glb", (gltf) => {
-      console.log('transTape',gltf);
-      this.transTape = gltf.scene;
-      this.transTape.visible = false;
+      console.log(gltf);
+      this.floor1Group = gltf.scene;
+
+      // 判断子元素是否是物体
+      gltf.scene.traverse((child) => {
+        if (child.isMesh) {
+          // console.log(child);
+          child.material.emissiveIntensity = 5;
+          // child.receiveShadow = true;
+          // child.castShadow = true;
+        }
+      });
+      this.floor1Group.visible = false;
       scene.add(gltf.scene);
     });
-
-    gltfLoader.load("./model/turnTransTape.glb", (gltf) => {
-      console.log('turnTransTape',gltf);
-      this.turnTransTape = gltf.scene;
-      this.turnTransTape.visible = false;
-      scene.add(gltf.scene);
-    });
-
-
-    gltfLoader.load("./model/box.glb", (gltf) => {
-      console.log('box',gltf);
-      this.box = gltf.scene;
-      gltf.scene.scale.set(0.5, 0.5, 0.5);
-      this.box.visible = false;
-      scene.add(gltf.scene);
-    });
-
 
     this.initEvent();
   }
@@ -58,42 +50,33 @@ export default class City {
     }
   }
 
+  createTag(object3d) {
+    // 创建各个区域的元素
+    const element = document.createElement("div");
+    element.className = "elementTag";
+    element.innerHTML = `
+      <div class="elementContent">
+        <h3>${object3d.name}</h3>
+        <p>温度：26℃</p>
+        <p>湿度：50%</p>
+      </div>
+    `;
+
+    const objectCSS3D = new CSS3DObject(element);
+    objectCSS3D.position.copy(object3d.position);
+    objectCSS3D.scale.set(0.2, 0.2, 0.2);
+    return objectCSS3D;
+    // scene.add(objectCSS3D);
+  }
+
+  showFloor1() {
+    this.floor1Group.visible = true;
+  }
 
 
-
-  showTransTape() {
-    this.transTape.visible = true;
-  }
-  hideTransTape() {
-    this.transTape.visible = false;
-  }
-  showTurnTransTape() {
-    this.turnTransTape.visible = true;
-  }
-  hideTurnTransTape() {
-    this.turnTransTape.visible = false;
-  }
-  showBox() {
-    this.box.visible = true;
-  }
-  hideBox() {
-    this.box.visible = false;
-  }
   initEvent() {
     eventHub.on("showTransTape", () => {
-      this.showTransTape();
-      this.hideTurnTransTape();
-      this.hideBox();
-    });
-    eventHub.on("showTurnTransTape", () => {
-      this.showTurnTransTape();
-      this.hideTransTape();
-      this.hideBox();
-    });
-    eventHub.on("showBox", () => {
-      this.showBox();
-      this.hideTransTape();
-      this.hideTurnTransTape();
+      this.showFloor1();
     });
 
   }

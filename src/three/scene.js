@@ -34,10 +34,35 @@ scene.environment = new THREE.Color("#ccc");
 // 1设置色调映射
 // 2设置曝光
 // 3设置场景灯光
+// 添加灯光
+const light1 = new THREE.DirectionalLight(0xffffff, 1);
+light1.position.set(0, 0, 10);
+scene.add(light1);
+const light2 = new THREE.DirectionalLight(0xffffff, 1);
+light2.position.set(0, 0, -10);
+scene.add(light2);
+const light3 = new THREE.DirectionalLight(0xffffff, 1);
+light3.position.set(10, 0, 0);
+scene.add(light3);
+const light4 = new THREE.DirectionalLight(0xffffff, 1);
+light4.position.set(-10, 0, 0);
+scene.add(light4);
+const light5 = new THREE.DirectionalLight(0xffffff, 1);
+light5.position.set(0, 10, 0);
+scene.add(light5);
+const light6 = new THREE.DirectionalLight(0xffffff, 0.3);
+light6.position.set(5, 10, 0);
+scene.add(light6);
+const light7 = new THREE.DirectionalLight(0xffffff, 0.3);
+light7.position.set(0, 10, 5);
+scene.add(light7);
+const light8 = new THREE.DirectionalLight(0xffffff, 0.3);
+light8.position.set(0, 10, -5);
+scene.add(light8);
+const light9 = new THREE.DirectionalLight(0xffffff, 0.3);
+light9.position.set(-5, 10, 0);
+scene.add(light9);
 
-// 给场景添加平行光
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(10, 100, 10);
-scene.add(light);
+
 
 export default scene;

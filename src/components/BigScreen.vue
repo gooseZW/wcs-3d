@@ -1,87 +1,36 @@
 <template>
   <div id="bigScreen">
-    <div class="header">智慧工厂系统管理平台</div>
+    <div class="header">模型展示</div>
     <div class="main">
       <div class="left">
-        <div class="cityEvent" @click="showWall">
+
+        <div class="cityEvent" @click="showTransTape">
           <h3>
             <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 厂房外形展示 </span>
+            <span> 展示滚轮输送机 </span>
           </h3>
 
           <div class="footerBorder"></div>
         </div>
-        <div class="cityEvent" @click="showAll">
+        <div class="cityEvent" @click="showTurnTransTape">
           <h3>
             <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 厂房分层展开 </span>
+            <span> 展示转弯输送机 </span>
           </h3>
 
           <div class="footerBorder"></div>
         </div>
-        <div class="cityEvent" @click="showFloor1">
+        <div class="cityEvent" @click="showBox">
           <h3>
             <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 展示第一层楼 </span>
+            <span> 展示纸箱 </span>
           </h3>
 
           <div class="footerBorder"></div>
         </div>
-        <div class="cityEvent" @click="showFloor2">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 展示第二层楼 </span>
-          </h3>
 
-          <div class="footerBorder"></div>
-        </div>
       </div>
-      <div class="right">
-        <div class="cityEvent" @click="flatFighter">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 展开飞机 </span>
-          </h3>
 
-          <div class="footerBorder"></div>
-        </div>
-
-        <div class="cityEvent" @click="recoverFighter">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 恢复飞机 </span>
-          </h3>
-
-          <div class="footerBorder"></div>
-        </div>
-
-        <div class="cityEvent" @click="pointsFighter">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 粒子特效 </span>
-          </h3>
-
-          <div class="footerBorder"></div>
-        </div>
-
-        <div class="cityEvent" @click="pointsBlast">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 粒子爆炸 </span>
-          </h3>
-
-          <div class="footerBorder"></div>
-        </div>
-
-        <div class="cityEvent" @click="pointsBack">
-          <h3>
-            <img class="icon" src="../assets/bg/bar.svg" alt="" />
-            <span> 粒子复原 </span>
-          </h3>
-
-          <div class="footerBorder"></div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -100,6 +49,15 @@ const showFloor1 = () => {
 
 const showFloor2 = () => {
   eventHub.emit("showFloor2");
+};
+const showTransTape = () => {
+  eventHub.emit("showTransTape");
+};
+const showTurnTransTape = () => {
+  eventHub.emit("showTurnTransTape");
+};
+const showBox = () => {
+  eventHub.emit("showBox");
 };
 let open = false;
 const showAll = () => {
@@ -203,6 +161,7 @@ const pointsBack = () => {
   background-image: url(@/assets/bg/bg_img03.png);
   background-repeat: repeat;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .cityEvent::before {
