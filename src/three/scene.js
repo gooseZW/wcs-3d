@@ -20,13 +20,15 @@ const scene = new THREE.Scene();
 // 添加圆柱形天空
 const rgbeloader = new RGBELoader();
 
-rgbeloader.loadAsync("./textures/2k.hdr").then((texture) => {
-  // 设置纹理为圆柱形纹理
-  texture.mapping = THREE.EquirectangularReflectionMapping;
-  // 添加天空环境
-  scene.background = texture;
-  scene.environment = texture;
-});
+// rgbeloader.loadAsync("./textures/2k.hdr").then((texture) => {
+//   // 设置纹理为圆柱形纹理
+//   texture.mapping = THREE.EquirectangularReflectionMapping;
+//   // 添加天空环境
+//   scene.background = texture;
+//   scene.environment = texture;
+// });
+scene.background = new THREE.Color("#ccc");
+scene.environment = new THREE.Color("#ccc");
 
 // 场景亮度物理灯光效果
 // 1设置色调映射
